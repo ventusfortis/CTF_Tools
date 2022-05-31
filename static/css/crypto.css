@@ -18,7 +18,17 @@ div.inline {
     align-content: start;
     padding-left: 20px;
 }
+div.block {
+    display: flex;
+    align-content: center;
+}
 
+.block:hover {
+    background: darkgrey;
+}
+div.block:hover + ul {
+    display: grid;
+}
 .inline {
     display: inline-block;
 }
@@ -40,9 +50,27 @@ input.input_text {
     width: 3rem;
 }
 
-ul, li {
+ul {
     list-style-type: none;
+    display: none;
+    padding: 0px;
+    margin-top: 0px;
 }
-ul.submenu > li {
 
+ul:hover {
+    display: grid;
+}
+
+ul.submenu > li {
+    display: grid;
+    background: #c4c4c4c4;
+    height: 73px;
+    align-content: center;
+    border-bottom: solid black 1px;
+}
+
+ul > li > a {
+  text-decoration: none;
+  color: black;
+  margin-left: 20px;
 }

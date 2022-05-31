@@ -5,20 +5,36 @@
 
 {% block content %}
     <div class="header-container">
-        <a href="/crypto/numeric" class="pages">Numeric Systems</a>
-        <a href="/crypto/base64" class="pages">Base64</a>
-        <a href="/crypto/url" class="pages">URL en/decode</a>
-        <a href="/crypto/rot" class="pages">ROT</a>
-        <a href="/crypto/xor" class="pages">XOR</a>
-        <a href="/crypto/hex" class="pages">From/To Hex</a>
-        <a class="pages utils">Utils</a>
-            <ul class="submenu">
-                <li><a href="/crypto/utils/reverse">Reverse string</a></li>
-                <li><a href="/crypto/utils/remove_whitespace">Remove whitespace</a></li>
-                <li><a href="/crypto/utils/to_upper">To upper case</a></li>
-                <li><a href="/crypto/utils/to_lower">To lower case</a></li>
-                <li><a href="/crypto/utils/line_numbers">Add/Remove line numbers</a></li>
-            </ul>
+        <div class="block">
+            <a href="/crypto/numeric" class="pages">Numeric Systems</a>
+        </div>
+
+        <div class="block">
+            <a href="/crypto/base64" class="pages">Base64</a>
+        </div>
+        <div class="block">
+            <a href="/crypto/url" class="pages">URL en/decode</a>
+        </div>
+        <div class="block">
+            <a href="/crypto/rot" class="pages">ROT</a>
+        </div>
+        <div class="block">
+            <a href="/crypto/xor" class="pages">XOR</a>
+        </div>
+        <div class="block">
+            <a href="/crypto/hex" class="pages">From/To Hex</a>
+        </div>
+        <div class="block">
+            <a class="pages utils">Utils</a>
+
+        </div>
+
+        <ul class="submenu">
+            <li class="block"><a href="/crypto/utils/reverse">Reverse string</a></li>
+            <li class="block"><a href="/crypto/utils/remove_whitespace">Remove whitespace</a></li>
+            <li class="block"><a href="/crypto/utils/to_case">To upper/lower case</a></li>
+            <li class="block"><a href="/crypto/utils/line_numbers">Add/Remove line numbers</a></li>
+        </ul>
     </div>
     {% block crypto_content %} {% endblock %}
 {% endblock %}

@@ -1,6 +1,6 @@
 import wtforms
 from flask_wtf import FlaskForm
-from wtforms import DecimalField, TextAreaField, StringField, SubmitField, RadioField
+from wtforms import DecimalField, TextAreaField, StringField, SubmitField, RadioField, BooleanField
 from wtforms.validators import data_required
 
 
@@ -36,3 +36,22 @@ class HexForm(FlaskForm):
     source = TextAreaField(u'Source', [data_required()])
     radio = RadioField(u'Option', choices=["From Hex", "To Hex"], validators=[data_required()])
     delimiter = StringField(u'Delimiter')
+
+class ReverseForm(FlaskForm):
+    source = TextAreaField(u'Source', [data_required()])
+
+class WhitespaceForm(FlaskForm):
+    source = TextAreaField(u'Source')
+    space = BooleanField(u' ' )
+    n = BooleanField(u'\n' )
+    r = BooleanField(u'\r' )
+    f = BooleanField(u'\f')
+    select = [space,n,r,f]
+
+class ToCaseForm(FlaskForm):
+    source = TextAreaField(u'Source', [data_required()])
+    radio = RadioField(u'Choice', choices=["To upper", "To lower"], validators=[data_required()])
+
+class LineNumbersForm(FlaskForm):
+    source = TextAreaField(u'Source', [data_required()])
+    radio = RadioField(u'Option', choices=["Add", "Remove"])

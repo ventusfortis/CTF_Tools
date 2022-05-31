@@ -43,3 +43,11 @@ def from_hex(data, delimiter):
 
 def to_hex(data, delimeter):
     return delimeter.join(list(map(lambda _: dec_to_base(_,16), list(map(lambda t : ord(t), data)))))
+
+def add_line_numbers(data):
+    data = data.split("\n")
+    return "\n".join(list(map(lambda i: str(i) + " " + data[i], range(len(data)))))
+
+def remove_line_numbers(data):
+    data = data.split('\n')
+    return "\n".join(list(map(lambda i: data[i][data[i].index(" ") + 1:], range(len(data)))))

@@ -104,6 +104,56 @@ def hex():
             result = crypto_tools.to_hex(form.source.data, " " if form.delimiter.data == "" else form.delimiter.data)
     return render_template("crypto/hex.html",
                            form=form, result=result, add_error=error)
+@app.route('/crypto/utils/reverse', methods=['post','get'])
+def reverse():
+    form = forms.ReverseForm()
+    result = ""
+    if form.validate_on_submit():
+        result = (form.source.data.replace("\r", ""))[::-1]
+    return render_template("crypto/reverse.html",
+                           form=form, result=result)
+
+@app.route('/crypto/utils/remove_whitespace', methods=['post','get'])
+def whitespaces():
+    form = forms.WhitespaceForm()
+    result = form.source.data
+    if form.validate_on_submit():
+        if form.space.data:
+            result = result.replace(" ", "")
+        if form.n.data:
+            result = result.replace("\n", "")
+        if form.r.data:
+            result = result.replace("\r", "")
+        if form.f.data:
+            result = result.replace("\f", "")
+    return render_template("crypto/whitespaces.html",
+                           form=form, result=result)
+
+@app.route('/crypto/utils/to_case', methods=['post','get'])
+def to_case():
+    form = forms.ToCaseForm()
+    result = ""
+    if form.validate_on_submit():
+        result = form.source.data
+        if form.radio.data == "To upper":
+            result = result.upper()
+        elif form.radio.data == "To lower":
+            result = result.lower()
+    return render_template("crypto/to_case.html",
+                           form=form, result=result)
+
+@app.route('/crypto/utils/line_numbers',  methods=['post','get'])
+def line_numbers():
+    form = forms.LineNumbersForm()
+    result = ""
+    if form.validate_on_submit():
+        result = form.source.data
+        if form.radio.data == "Add":
+            result = crypto_tools.add_line_numbers(result)
+        elif form.radio.data == "Remove":
+            result = crypto_tools.remove_line_numbers(result)
+    return render_template("crypto/line_numbers.html",
+                           form=form, result=result)
 
 if __name__ == '__main__':
     app.run()

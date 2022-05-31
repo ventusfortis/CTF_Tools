@@ -6,7 +6,7 @@ body {
 
 div.header-container {
     position: relative;
-    background: #C4C4C4;
+    background: #c4c4c4c4;
     width: 100%;
     height: 73px;
     padding: 0;
@@ -36,9 +36,9 @@ div.header-container {
 }
 
 a.pages {
-    margin-left: 89px;
-    padding-top: 20px;
-    font-size: 20px;
+   font-size: 20px;
+    align-self: center;
+    margin: 47px;
 }
 
 a.pages:link {
@@ -55,3 +55,4 @@ div.intro {
     text-align: center;
     margin-top: 30px;
 }
+

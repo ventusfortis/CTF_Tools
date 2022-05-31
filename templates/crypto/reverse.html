@@ -1,0 +1,24 @@
+{% extends "crypto_base.html" %}
+{% block crypto_content %}
+<div class="content">
+    <p class="tool_name">Reverse a string</p>
+    <p class="desc">Enter the string and push reverse</p>
+    <form action="" method="post"  name="reverse" class="tool_panel">
+        {{ form.hidden_tag() }}
+        <div class="inline">
+            {{ form.source(rows='10', cols='70') }}
+            <p class="error">{% for error in form.source.errors %} {{ error }} {% endfor %}</p>
+            <p class="error">{{ add_error }}</p>
+        </div>
+        <div class="inline">
+            <div class="params" align="right">
+                <label for="submit"></label>
+                <input type="submit" value="Reverse!">
+            </div>
+        </div>
+        <div class="inline">
+            <textarea cols="70" rows="10" name="result">{{ result }}</textarea>
+        </div>
+    </form>
+</div>
+{% endblock %}
