@@ -1,0 +1,48 @@
+p.desc {
+    margin-left: 89px;
+    font-size: x-large;
+    font-style: normal;
+}
+
+p.tool_name {
+    margin-left: 89px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+p.error {
+    font-weight: bold;
+    color: red;
+}
+div.inline {
+    display: inline-block;
+    align-content: start;
+    padding-left: 20px;
+}
+
+.inline {
+    display: inline-block;
+}
+.params {
+    margin-left: 20px;
+    margin-bottom: 27px;
+    width: fit-content;
+    height: fit-content;
+}
+.tool_panel {
+    margin-left: 89px;
+}
+
+input.input_number {
+    width: 3rem;
+}
+
+input.input_text {
+    width: 3rem;
+}
+
+ul, li {
+    list-style-type: none;
+}
+ul.submenu > li {
+
+}

@@ -1,0 +1,34 @@
+{% extends "crypto_base.html" %}
+{% block crypto_content %}
+<div class="content">
+    <p class="tool_name">XOR encrypt</p>
+    <p class="desc">Enter the string and the key, choose key format then press "encrypt"</p>
+    <form action="" method="post"  name="xor" class="tool_panel">
+        {{ form.hidden_tag() }}
+        <div class="inline">
+            {{ form.source(rows='10', cols='70') }}
+            <p class="error">{% for error in form.source.errors %} {{ error }} {% endfor %}</p>
+            <p class="error">{{ add_error }}</p>
+        </div>
+        <div class="inline">
+           {% for subfield in form.radio %}
+                    <div class="params" align="right">
+                    {{ subfield }}
+                    {{ subfield.label }}
+                    </div>
+           {% endfor %}
+            <div class="params">
+                <label for="key">Key:</label>
+                {{ form.key(class="inline input_text", value = "" if form.key.data == None else form.key.data) }}
+            </div>
+            <div class="params" align="right">
+                <label for="submit"></label>
+                <input type="submit" value="Encrypt">
+            </div>
+        </div>
+        <div class="inline">
+            <textarea cols="70" rows="10" name="result">{{ result }}</textarea>
+        </div>
+    </form>
+</div>
+{% endblock %}
