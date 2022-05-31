@@ -164,7 +164,7 @@ def line_numbers():
         if form.radio.data == "Add":
             result = crypto_tools.add_line_numbers(result)
         elif form.radio.data == "Remove":
-            if re.search(r"^\d ", result) is None:
+            if re.search(r"^\d+ ", result) is None:
                 error = "Entered string's lines are not numbered correctly"
             else:
                 result = crypto_tools.remove_line_numbers(result)
