@@ -4,7 +4,7 @@ from flask import render_template
 import forms
 import crypto_tools
 import urllib.parse
-
+import re
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -70,9 +70,12 @@ def rot():
     result = ""
     error = ""
     if form.validate_on_submit():
-        result = crypto_tools.rotx(form.source.data, form.turn.data)
+        try:
+            result = crypto_tools.rotx(form.source.data, form.turn.data)
+        except:
+            error="Use only english letters"
     return render_template("crypto/rot.html",
-                           form=form, result=result)
+                           form=form, result=result, add_error=error)
 
 @app.route('/crypto/xor', methods = ['get', 'post'])
 def xor():
@@ -81,13 +84,22 @@ def xor():
     error = ""
     if form.validate_on_submit() :
         if form.radio.data == "UTF-8":
-            result = crypto_tools.xor_str(form.source.data, form.key.data)
+            try:
+                result = crypto_tools.xor_str(form.source.data, form.key.data)
+            except:
+                error = "Wrong key format"
         elif form.radio.data == "Hex number":
-            result = crypto_tools.xor_num(form.source.data, int(form.key.data, 16))
+            try:
+                result = crypto_tools.xor_num(form.source.data, int(form.key.data, 16))
+            except:
+                error = "Wrong key format"
         else:
-            result = crypto_tools.xor_num(form.source.data, int(form.key.data))
+            try:
+                result = crypto_tools.xor_num(form.source.data, int(form.key.data))
+            except:
+                error = "Wrong key format"
     return render_template("crypto/xor.html",
-                           form=form, result=result)
+                           form=form, result=result, add_error=error)
 
 @app.route('/crypto/hex', methods=['post','get'])
 def hex():
@@ -146,14 +158,18 @@ def to_case():
 def line_numbers():
     form = forms.LineNumbersForm()
     result = ""
+    error = ""
     if form.validate_on_submit():
         result = form.source.data
         if form.radio.data == "Add":
             result = crypto_tools.add_line_numbers(result)
         elif form.radio.data == "Remove":
-            result = crypto_tools.remove_line_numbers(result)
+            if not re.match(r"$\d ", result):
+                error = "Entered string's lines are not numbered correctly"
+            else:
+                result = crypto_tools.remove_line_numbers(result)
     return render_template("crypto/line_numbers.html",
-                           form=form, result=result)
+                           form=form, result=result, add_error=error)
 
 if __name__ == '__main__':
     app.run()
